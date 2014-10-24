@@ -3,6 +3,7 @@ public class InProgressScreen implements GameState {
     private GameComponents gameComponents;
     private CollisionApplier collisionApplier;
     private Level level;
+    private Status status;
 
     InProgressScreen(Game game, GameComponents gameComponents) {
         this.game = game;
@@ -13,6 +14,10 @@ public class InProgressScreen implements GameState {
         for (int i = 0; i < level.getRocks(); i++) {
             gameComponents.Rocks.add(new Rock(gameComponents.Score));
         }
+    }
+
+    public Status getGameStatus() {
+        return Status.InProgress;
     }
 
     public void display()

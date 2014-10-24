@@ -2,6 +2,10 @@ public class GameOverScreen implements GameState {
     private Game game;
     private GameComponents gameComponents;
 
+    public Status getGameStatus() {
+        return Status.Over;
+    }
+
     GameOverScreen(Game game, GameComponents gameComponents) {
         this.game = game;
         this.gameComponents = gameComponents;

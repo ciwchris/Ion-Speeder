@@ -1,4 +1,6 @@
-public interface GameState extends GameDisplay, GameKeys { }
+public interface GameState extends GameDisplay, GameKeys {
+    Status getGameStatus();
+}
 
 public interface GameKeys {
     void action(char key);

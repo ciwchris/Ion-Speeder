@@ -1,51 +1,41 @@
 public class Game {
     private PImage background;
-    private Status status;
 
     private InProgressScreen inProgressScreen;
     private GameComponents gameComponents;
+    private GameState gameState;
+    private GameState inprogressGame;
 
     public Status getGameStatus() {
-        return status;
+        return gameState.getGameStatus();
     }
 
     Game() {
         size(GameDimensions.width, GameDimensions.height);
-        status = Status.Intro;
         background = loadImage("starry-sky.png");
+        gameState = new LoadScreen(this);
     }
 
     public GameState getScreen() {
         background(background);
-
-        if (status == Status.InProgress) {
-            return inProgressScreen;
-        } else if (status == Status.Intro) {
-            return new LoadScreen(this);
-        } else if (status == Status.Paused) {
-            return new PauseScreen(this);
-        } else if (status == Status.Over) {
-            return new GameOverScreen(this, gameComponents);
-        } else {
-            return null;
-        }
+        return gameState;
     }
 
     public void resume() {
-        status = Status.InProgress;
+        gameState = inprogressGame;
     }
 
     public void gameOver() {
-        status = Status.Over;
+        gameState = new GameOverScreen(this, gameComponents);
     }
 
     public void pause() {
-        status = Status.Paused;
+        inprogressGame = gameState;
+        gameState = new PauseScreen(this);
     }
 
     public void start() {
-        status = Status.InProgress;
         gameComponents = new GameComponents();
-        inProgressScreen = new InProgressScreen(this, gameComponents);
+        gameState = new InProgressScreen(this, gameComponents);
     }
 }

@@ -1,6 +1,10 @@
 public class PauseScreen implements GameState {
     private Game game;
 
+    public Status getGameStatus() {
+        return Status.Paused;
+    }
+
     PauseScreen(Game game) {
         this.game = game;
     }

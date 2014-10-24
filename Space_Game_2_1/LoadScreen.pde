@@ -1,6 +1,10 @@
 public class LoadScreen implements GameState {
     private Game game;
 
+    public Status getGameStatus() {
+        return Status.Intro;
+    }
+
     LoadScreen(Game game) {
         this.game = game;
     }

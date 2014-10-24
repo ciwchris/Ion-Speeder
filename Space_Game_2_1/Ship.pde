@@ -1,4 +1,4 @@
-public class Ship implements GameState {
+public class Ship {
     private int displacement;
     private int movement;
     private int xpos;
